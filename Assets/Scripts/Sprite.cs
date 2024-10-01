@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sprite : MonoBehaviour
 {
 
+    HelperScript helper;
     Rigidbody2D rigidBody;
     Animator animator;
     SpriteRenderer spriteRen;
@@ -23,6 +24,7 @@ public class Sprite : MonoBehaviour
     void Start()
     {
 
+        helper = gameObject.AddComponent<HelperScript>();
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRen = GetComponent<SpriteRenderer>();
@@ -67,14 +69,14 @@ public class Sprite : MonoBehaviour
 
         if (Input.GetKey("left"))
         {
+            helper.FlipObject(true);
             rigidBody.velocity = new Vector2(-5f, rigidBody.velocity.y);
-            spriteRen.flipX = true;
         }
 
         if (Input.GetKey("right"))
         {
+            helper.FlipObject(false);
             rigidBody.velocity = new Vector2(5f, rigidBody.velocity.y);
-            spriteRen.flipX = false;
         }
 
         if (Input.GetKey("left") && isGrounded || Input.GetKey("right") && isGrounded)
@@ -117,6 +119,11 @@ public class Sprite : MonoBehaviour
         {
             animator.SetBool("isFall", false);
             animator.SetBool("isJump", true);
+        }
+
+        if( Input.GetKeyDown("h"))
+        {
+            helper.HelloWorld(true);
         }
 
     }

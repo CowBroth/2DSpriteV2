@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
 
+    HelperScript helper;
     SpriteRenderer sr;
     public GameObject player;
     Rigidbody2D rb;
@@ -15,9 +16,9 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
 
+        helper = gameObject.AddComponent<HelperScript>();
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("player");
         anim = GetComponent<Animator>();
 
     }
@@ -31,15 +32,28 @@ public class EnemyScript : MonoBehaviour
 
         if (pP > eP)
         {
-            sr.flipX = true;
+            helper.FlipObject(true);
             rb.velocity = new Vector2(2f, rb.velocity.y);
         }
         if (pP < eP)
         {
-            sr.flipX = false;
+            helper.FlipObject(false);
             rb.velocity = new Vector2(-2f, rb.velocity.y);
         }
 
+    }
+
+    void FixedUpdate()
+    {
+
+        if (Physics2D.Raycast(transform.position, -Vector2.up, 0.5f, 0))
+        {
+            print("a");
+        }
+
+
+        
+        
     }
 
 }

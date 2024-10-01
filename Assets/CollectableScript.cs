@@ -5,11 +5,13 @@ using UnityEngine;
 public class CollectableScript : MonoBehaviour
 {
 
+    public GameObject parent;
+    private CollectParentScript pScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        pScript = parent.GetComponent<CollectParentScript>();
     }
 
     // Update is called once per frame
@@ -23,8 +25,12 @@ public class CollectableScript : MonoBehaviour
 
         if (other.CompareTag("PlayerTag"))
         {
+
+            pScript.amount++;
+
             print("collectable");
             Destroy(gameObject);
+
         }
 
     }
