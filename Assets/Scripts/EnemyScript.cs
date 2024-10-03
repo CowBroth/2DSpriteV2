@@ -43,17 +43,4 @@ public class EnemyScript : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
-
-        if (Physics2D.Raycast(transform.position, -Vector2.up, 0.5f, 0))
-        {
-            print("a");
-        }
-
-
-        
-        
-    }
-
 }

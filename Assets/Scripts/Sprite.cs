@@ -11,11 +11,11 @@ public class Sprite : MonoBehaviour
     SpriteRenderer spriteRen;
     Transform transform;
 
-    bool isGrounded = false;
     bool isFalling = false;
     bool isJumping = false;
     bool isAttack = false;
     bool isWalking = false;
+    bool isGrounded = false;
 
     float nPos;
     float oPos;
@@ -34,7 +34,6 @@ public class Sprite : MonoBehaviour
         animator.SetBool("isJump", false);
         animator.SetBool("isFall", false);
         animator.SetBool("isGrounded", false);
-        animator.SetBool("isAttack", false);
 
     }
 
@@ -43,27 +42,14 @@ public class Sprite : MonoBehaviour
     {
 
         MoveSprite();
-
         oPos = transform.position.y;
 
-    }
-
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        isGrounded = true;
-        animator.SetBool("isGrounded", true);
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        isGrounded = false;
-        animator.SetBool("isGrounded", false);
     }
 
     void MoveSprite()
     {
 
-        animator.SetBool("isAttack", false);
+        isGrounded = helper.GroundRaycast();
 
         nPos = transform.position.y;
 
@@ -99,14 +85,9 @@ public class Sprite : MonoBehaviour
             animator.SetBool("isGrounded", false);
         }
 
-        if (Input.GetKeyDown("z") && isGrounded)
+        if (Input.GetKeyDown("z") && isGrounded == true)
         {
             rigidBody.AddForce(new Vector3(0, 12, 0), ForceMode2D.Impulse);
-        }
-
-        if (Input.GetKeyDown("x") && isGrounded)
-        {
-            animator.SetBool("isAttack", true);
         }
 
         if (nPos < oPos && !isGrounded)
@@ -119,11 +100,6 @@ public class Sprite : MonoBehaviour
         {
             animator.SetBool("isFall", false);
             animator.SetBool("isJump", true);
-        }
-
-        if( Input.GetKeyDown("h"))
-        {
-            helper.HelloWorld(true);
         }
 
     }
