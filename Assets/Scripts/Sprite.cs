@@ -15,7 +15,6 @@ public class Sprite : MonoBehaviour
     bool isJumping = false;
     bool isAttack = false;
     bool isWalking = false;
-    bool isGrounded = false;
 
     float nPos;
     float oPos;
@@ -35,6 +34,7 @@ public class Sprite : MonoBehaviour
         animator.SetBool("isFall", false);
         animator.SetBool("isGrounded", false);
 
+
     }
 
     // Update is called once per frame
@@ -49,9 +49,9 @@ public class Sprite : MonoBehaviour
     void MoveSprite()
     {
 
-        isGrounded = helper.GroundRaycast();
-
         nPos = transform.position.y;
+
+        bool isGrounded = helper.GroundRaycast();
 
         if (Input.GetKey("left"))
         {

@@ -6,18 +6,20 @@ public class HelperScript : MonoBehaviour
 {
 
     LayerMask floorMask;
+    SpriteRenderer sr;
+    Vector3 offset;
+    bool turn = false;
 
     void Start()
     {
 
         floorMask = LayerMask.GetMask("Floor");
+        sr = gameObject.GetComponent<SpriteRenderer>();
 
     }
 
     public void FlipObject(bool flip)
     {
-
-        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 
         if (flip == true)
         {
@@ -30,28 +32,53 @@ public class HelperScript : MonoBehaviour
 
     }
 
+    public bool PatrolRaycast()
+    {
+
+        turn = false;
+        float length = 0.25f;
+        Color color;
+
+        RaycastHit2D ray = Physics2D.Raycast(transform.position + offset, Vector2.down, length, floorMask);
+
+        if (ray.collider != null)
+        {
+            offset.x = -1;
+            color = Color.green;
+            turn = false;
+        }
+        else
+        {
+            offset.x = 1;
+            color = Color.red;
+            turn = true;
+        }
+
+        Debug.DrawRay(transform.position + offset, Vector2.down * length, color);
+
+        print(turn);
+        return turn;
+
+    }
+
     public bool GroundRaycast()
     {
 
-        bool colBool = false;
-        float rLength = 0.25f;
-        Vector3 offset1 = new Vector3(-0.3f, 0, 0);
-        Vector3 offset2 = new Vector3(0.3f, 0, 0);
-        Color rayC = Color.white;
+        bool boolean = false;
+        float length = 0.25f;
+        Color color = Color.white;
 
-        RaycastHit2D ray1 = Physics2D.Raycast(transform.position + offset1, Vector2.down, rLength, floorMask);
-        RaycastHit2D ray2 = Physics2D.Raycast(transform.position, Vector2.down, rLength, floorMask);
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down, length, floorMask);
 
-        if (ray1.collider != null && ray2.collider != null)
+        if (ray.collider != null)
         {
-            colBool = true;
-            rayC = Color.green;
+            boolean = true;
+            color = Color.green;
         }
 
-        Debug.DrawRay(transform.position + offset1, Vector2.down * rLength, rayC);
-        Debug.DrawRay(transform.position + offset2, Vector2.down * rLength, rayC);
-       
-        return colBool;
+        Debug.DrawRay(transform.position, Vector2.down * length, color);
+
+        return boolean;
 
     }
 

@@ -27,15 +27,21 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
 
-        float eP = transform.position.x;
-        float pP = player.transform.position.x;
+        Patrol();
 
-        if (pP > eP)
+    }
+
+    void Patrol()
+    {
+
+        bool change = helper.PatrolRaycast();
+
+        if (change)
         {
             helper.FlipObject(true);
             rb.velocity = new Vector2(2f, rb.velocity.y);
         }
-        if (pP < eP)
+        if (!change)
         {
             helper.FlipObject(false);
             rb.velocity = new Vector2(-2f, rb.velocity.y);

@@ -161,12 +161,12 @@ TextureImporter:
       name: shromwalk_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 0
-        width: 244
-        height: 225
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 21
+        y: 1
+        width: 242
+        height: 224
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,7 +181,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5be3d0151fc7ca74cbf9c45c6e8e993a
     internalID: 0
     vertices: []
     indices: 

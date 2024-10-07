@@ -161,12 +161,12 @@ TextureImporter:
       name: shrom_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 10
-        width: 236
-        height: 211
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 21
+        y: 11
+        width: 234
+        height: 209
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,7 +181,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c4b8bcd21c4e04c4d91c11643ee679ba
     internalID: 0
     vertices: []
     indices: 
